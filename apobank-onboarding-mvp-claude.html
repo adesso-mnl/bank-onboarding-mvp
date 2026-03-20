@@ -1029,7 +1029,63 @@
     color: var(--white);
   }
   .pill-option input { display: none; }
-  /* ─── Cheat menu ──────────────────────────────────── */
+  /* ─── Summary sub-cards ───────────────────────────── */
+  .summary-sub-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    background: var(--white);
+  }
+  .summary-sub-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .summary-sub-card-title {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111111;
+    letter-spacing: 0;
+  }
+  .summary-edit-btn {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--navy);
+    background: none;
+    border: none;
+    padding: 2px 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 4px;
+    transition: background 0.14s;
+    flex-shrink: 0;
+  }
+  .summary-edit-btn:hover { background: var(--navy-pale); }
+  .summary-edit-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+  .summary-entry {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 4px 16px;
+    padding: 5px 0;
+  }
+  .summary-entry:last-child { }
+  .summary-entry-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    align-self: center;
+  }
+  .summary-entry-value {
+    font-size: 0.88rem;
+    color: var(--text);
+    font-weight: 400;
+  }
+
   .cheat-btn {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 0.8rem;
@@ -1597,71 +1653,106 @@
      SCHRITT 11 · ZUSAMMENFASSUNG
 ════════════════════════════════════════════════════════ -->
 <div class="step-container" id="step-11">
-  <div class="step-card">
-    <div class="step-card-header">
-      <h1>Zusammenfassung deiner Angaben</h1>
-      <p>Bitte überprüf alle Angaben sorgfältig, bevor du den Antrag einreichst. Klicke auf einen Abschnitt, um Änderungen vorzunehmen.</p>
-    </div>
-    <div class="step-card-body">
-      <div class="summary-section">
-        <div class="summary-section-title">Kontotyp</div>
-        <div class="summary-grid"><div class="summary-field"><div class="summary-key">Kontotyp</div><div class="summary-val">Einzelkonto</div></div></div>
-        <button class="summary-edit" onclick="goToStep(2)">✏ Kontotyp bearbeiten</button>
+
+  <!-- Main summary card -->
+  <div class="card">
+    <div class="form-layout">
+      <div class="form-left">
+        <h1>Zusammenfassung deiner Angaben</h1>
+        <p>Bitte überprüfe deine Angaben. Du kannst zu jedem Schritt zurückkehren, um Änderungen vorzunehmen.</p>
       </div>
-      <div class="summary-section">
-        <div class="summary-section-title">Persönliche Daten</div>
-        <div class="summary-grid">
-          <div class="summary-field"><div class="summary-key">Vollständiger Name</div><div class="summary-val">Frau Maria Schneider</div></div>
-          <div class="summary-field"><div class="summary-key">Geburtsdatum</div><div class="summary-val">14. März 2001</div></div>
-          <div class="summary-field"><div class="summary-key">Geburtsort</div><div class="summary-val">München, Deutschland</div></div>
-          <div class="summary-field"><div class="summary-key">Staatsangehörigkeit</div><div class="summary-val">Deutsch</div></div>
-          <div class="summary-field"><div class="summary-key">Familienstand</div><div class="summary-val">Ledig</div></div>
+      <div class="form-right" style="display: flex; flex-direction: column; gap: 14px;">
+
+        <!-- Kontotyp -->
+        <div class="summary-sub-card">
+          <div class="summary-sub-card-header">
+            <span class="summary-sub-card-title">Kontotyp</span>
+            <button class="summary-edit-btn" onclick="goToStep(2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Bearbeiten</button>
+          </div>
+          <div class="summary-entry"><div class="summary-entry-label">Kontotyp</div><div class="summary-entry-value">Einzelkonto</div></div>
         </div>
-        <button class="summary-edit" onclick="goToStep(4)">✏ Persönliche Daten bearbeiten</button>
-      </div>
-      <div class="summary-section">
-        <div class="summary-section-title">Adresse &amp; Kontakt</div>
-        <div class="summary-grid">
-          <div class="summary-field"><div class="summary-key">Adresse</div><div class="summary-val">Musterstraße 12a, 80331 München</div></div>
-          <div class="summary-field"><div class="summary-key">E-Mail</div><div class="summary-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deb3bfacb7bff0adbdb6b0bbb7babbac9eb2b3abf0babb">[email&#160;protected]</a></div></div>
-          <div class="summary-field"><div class="summary-key">Mobiltelefon</div><div class="summary-val">+49 171 234 5678</div></div>
+
+        <!-- Persönliche Daten -->
+        <div class="summary-sub-card">
+          <div class="summary-sub-card-header">
+            <span class="summary-sub-card-title">Persönliche Daten</span>
+            <button class="summary-edit-btn" onclick="goToStep(4)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Bearbeiten</button>
+          </div>
+          <div class="summary-entry"><div class="summary-entry-label">Name</div><div class="summary-entry-value">Frau Maria Schneider</div></div>
+          <div class="summary-entry"><div class="summary-entry-label">Geburtsdatum</div><div class="summary-entry-value">14. März 2001</div></div>
+          <div class="summary-entry"><div class="summary-entry-label">Geburtsort</div><div class="summary-entry-value">München</div></div>
+          <div class="summary-entry"><div class="summary-entry-label">Staatsangehörigkeit</div><div class="summary-entry-value">Deutsch</div></div>
+          <div class="summary-entry"><div class="summary-entry-label">Familienstand</div><div class="summary-entry-value">Ledig</div></div>
         </div>
-        <button class="summary-edit" onclick="goToStep(6)">✏ Adresse &amp; Kontakt bearbeiten</button>
-      </div>
-      <div class="summary-section">
-        <div class="summary-section-title">Studiumsangaben</div>
-        <div class="summary-grid">
-          <div class="summary-field"><div class="summary-key">Hochschule</div><div class="summary-val">LMU München</div></div>
-          <div class="summary-field"><div class="summary-key">Studiengang</div><div class="summary-val">Humanmedizin</div></div>
-          <div class="summary-field"><div class="summary-key">Abschluss</div><div class="summary-val">Staatsexamen</div></div>
-          <div class="summary-field"><div class="summary-key">Aktuelles Semester</div><div class="summary-val">4. Semester</div></div>
-          <div class="summary-field"><div class="summary-key">Studienzeitraum</div><div class="summary-val">Okt. 2023 – Sep. 2029</div></div>
-          <div class="summary-field"><div class="summary-key">Matrikelnummer</div><div class="summary-val">12345678</div></div>
+
+        <!-- Adresse -->
+        <div class="summary-sub-card">
+          <div class="summary-sub-card-header">
+            <span class="summary-sub-card-title">Meldeadresse</span>
+            <button class="summary-edit-btn" onclick="goToStep(6)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Bearbeiten</button>
+          </div>
+          <div class="summary-entry"><div class="summary-entry-label">Adresse</div><div class="summary-entry-value">Musterstraße 12a, 80331 München</div></div>
         </div>
-        <button class="summary-edit" onclick="goToStep(8)">✏ Studiumsangaben bearbeiten</button>
-      </div>
-      <div class="summary-section">
-        <div class="summary-section-title">Steuerliche Angaben</div>
-        <div class="summary-grid">
-          <div class="summary-field"><div class="summary-key">Steuer-IdNr.</div><div class="summary-val">12 345 678 901</div></div>
-          <div class="summary-field"><div class="summary-key">US-Steuerstatus</div><div class="summary-val">Keine US-Person</div></div>
-          <div class="summary-field"><div class="summary-key">Eigenes wirtschaftliches Interesse</div><div class="summary-val">Bestätigt ✓</div></div>
+
+        <!-- Kontakt -->
+        <div class="summary-sub-card">
+          <div class="summary-sub-card-header">
+            <span class="summary-sub-card-title">Kontaktdaten</span>
+            <button class="summary-edit-btn" onclick="goToStep(7)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Bearbeiten</button>
+          </div>
+          <div class="summary-entry"><div class="summary-entry-label">E-Mail</div><div class="summary-entry-value">maria.schneider@lmu.de</div></div>
+          <div class="summary-entry"><div class="summary-entry-label">Mobiltelefon</div><div class="summary-entry-value">+49 171 234 5678</div></div>
         </div>
-        <button class="summary-edit" onclick="goToStep(9)">✏ Steuerliche Angaben bearbeiten</button>
-      </div>
-      <div class="order-box" style="margin:28px 0 0;">
-        <div class="order-box-text">
-          <strong>Alles korrekt?</strong>
-          <p>Mit dem Absenden bestätigst du, dass alle Angaben wahrheitsgemäß und vollständig sind.</p>
+
+        <!-- Studium -->
+        <div class="summary-sub-card">
+          <div class="summary-sub-card-header">
+            <span class="summary-sub-card-title">Studiumsangaben</span>
+            <button class="summary-edit-btn" onclick="goToStep(8)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Bearbeiten</button>
+          </div>
+          <div class="summary-entry"><div class="summary-entry-label">Studiengang</div><div class="summary-entry-value">Humanmedizin</div></div>
+          <div class="summary-entry"><div class="summary-entry-label">Hochschule</div><div class="summary-entry-value">LMU München</div></div>
+          <div class="summary-entry"><div class="summary-entry-label">Aktuelles Semester</div><div class="summary-entry-value">4. Fachsemester</div></div>
+          <div class="summary-entry"><div class="summary-entry-label">Studienzeitraum</div><div class="summary-entry-value">Okt. 2023 – Sep. 2029</div></div>
         </div>
-        <button class="btn-order" onclick="goToStep(12)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Antrag einreichen
-        </button>
+
+        <!-- Steuer -->
+        <div class="summary-sub-card">
+          <div class="summary-sub-card-header">
+            <span class="summary-sub-card-title">Steuerliche Angaben</span>
+            <button class="summary-edit-btn" onclick="goToStep(9)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Bearbeiten</button>
+          </div>
+          <div class="summary-entry"><div class="summary-entry-label">Steuer-IdNr.</div><div class="summary-entry-value">12 345 678 901</div></div>
+          <div class="summary-entry"><div class="summary-entry-label">US-Steuerstatus</div><div class="summary-entry-value">Keine US-Person</div></div>
+        </div>
+
       </div>
     </div>
   </div>
-  <div class="btn-row">
+
+  <!-- Alles korrekt card -->
+  <div class="card" style="margin-top: 0;">
+    <div class="form-layout">
+      <div class="form-left">
+        <h1>Alles korrekt?</h1>
+      </div>
+      <div class="form-right" style="display: flex; flex-direction: column; gap: 16px;">
+        <p style="font-size: 0.95rem; color: var(--text); line-height: 1.6;">Der Abschluss deiner Kontoeröffnung beinhaltet ein kostenloses Girokonto und Debitkarte. Zudem erhältst du jeweils einen Zugang zum Online-Banking und zum Telefon-Banking.<br><br>Mit Klick auf „Zahlungspflichtig bestellen" bestätigst Du Deine Angaben und wirst im letzten Schritt zur „Video-Legitimation" weitergeleitet.</p>
+        <div class="info-box" style="margin-bottom: 0;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Da im Rahmen Deiner zukünftigen Kundenbeziehung zu uns Kosten anfallen können, musst du die Kontoeröffnung „Zahlungspflichtig bestellen". Genauere Informationen findest du in unserem <a href="#" style="color: var(--navy); font-weight: 600;">Preis und Leistungsverzeichnis</a>.</span>
+        </div>
+        <div style="display: flex; justify-content: flex-end;">
+          <button class="btn btn-primary" onclick="goToStep(12)" style="white-space: nowrap;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px;"><polyline points="20 6 9 17 4 12"/></svg>
+            Zahlungspflichtig bestellen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row" style="margin-top: 0;">
     <button class="btn btn-ghost" onclick="goToStep(10)">← Zurück</button>
   </div>
 </div>
